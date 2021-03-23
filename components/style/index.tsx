@@ -1,5 +1,5 @@
-import React from 'react';
 import deepmerge from 'deepmerge';
+import React from 'react';
 import shallowequal from 'shallowequal';
 import defaultTheme from './themes/default';
 
@@ -12,14 +12,9 @@ export interface ThemeProviderProps {
 }
 export const ThemeProvider = (props: ThemeProviderProps) => {
   const { value, children } = props;
-  const theme = React.useMemo(
-    () => ({ ...defaultTheme, ...value }),
-    [value],
-  );
+  const theme = React.useMemo(() => ({ ...defaultTheme, ...value }), [value]);
   return (
-    <ThemeContext.Provider value={theme}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
   );
 };
 export interface UseThemeContextProps {
@@ -48,12 +43,12 @@ export type WithThemeStyles<T> = { styles?: Partial<T> };
 export function WithTheme<T, S>(props: WithThemeProps<T, S>) {
   const { children, themeStyles, styles } = props;
 
-  const stylesRef = React.useRef < S | undefined >(undefined);
+  const stylesRef = React.useRef<S | undefined>(undefined);
   const cache = React.useRef<T | any>(undefined);
 
   const getStyles = React.useCallback(
     (theme: Theme) => {
-      if(themeStyles && cache.current === undefined){
+      if (themeStyles && cache.current === undefined) {
         cache.current = themeStyles(theme);
       }
 
@@ -64,9 +59,9 @@ export function WithTheme<T, S>(props: WithThemeProps<T, S>) {
         cache.current = deepmerge<T>(cache.current, styles);
       }
 
-      return cache.current||{};
+      return cache.current || {};
     },
-    [themeStyles,styles],
+    [themeStyles, styles],
   );
 
   return (

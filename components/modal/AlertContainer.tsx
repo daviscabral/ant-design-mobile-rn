@@ -14,7 +14,7 @@ export interface AlertContainerProps {
 export default class AlertContainer extends React.Component<
   AlertContainerProps,
   any
-  > {
+> {
   constructor(props: AlertContainerProps) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ export default class AlertContainer extends React.Component<
     const { onBackHandler } = this.props;
     if (typeof onBackHandler === 'function') {
       const flag = onBackHandler();
-      if(flag){
+      if (flag) {
         this.onClose();
       }
       return flag;
@@ -48,7 +48,7 @@ export default class AlertContainer extends React.Component<
     const { title, actions, content, onAnimationEnd } = this.props;
     const footer = actions.map(button => {
       // tslint:disable-next-line:only-arrow-functions
-      const orginPress = button.onPress || function () { };
+      const orginPress = button.onPress || function() {};
       button.onPress = () => {
         const res = orginPress();
         if (res && res.then) {

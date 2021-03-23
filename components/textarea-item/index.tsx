@@ -1,5 +1,13 @@
 import React from 'react';
-import { NativeSyntheticEvent, Text, TextInput, TextInputChangeEventData, TextInputProperties, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  Text,
+  TextInput,
+  TextInputChangeEventData,
+  TextInputProperties,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import { Omit } from 'utility-types';
 import Icon from '../icon';
 import { Theme, WithTheme, WithThemeStyles } from '../style';
@@ -47,7 +55,7 @@ export default class TextAreaItem extends React.Component<
   constructor(props: TextareaItemProps) {
     super(props);
     this.state = {
-      inputCount: fixControlledValue(props.value||props.defaultValue).length,
+      inputCount: fixControlledValue(props.value || props.defaultValue).length,
     };
   }
 
@@ -157,7 +165,7 @@ export default class TextAreaItem extends React.Component<
                 multiline={rows! > 1 || autoHeight}
                 numberOfLines={rows}
                 maxLength={maxLength}
-                ref={ref=> this.textAreaRef = ref}
+                ref={ref => (this.textAreaRef = ref)}
               />
               {error ? (
                 <TouchableWithoutFeedback onPress={onErrorClick}>

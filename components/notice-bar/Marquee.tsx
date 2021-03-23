@@ -1,5 +1,13 @@
 import React from 'react';
-import { Animated, Easing, LayoutChangeEvent, StyleProp, Text, TextStyle, View } from 'react-native';
+import {
+  Animated,
+  Easing,
+  LayoutChangeEvent,
+  StyleProp,
+  Text,
+  TextStyle,
+  View,
+} from 'react-native';
 
 export interface MarqueeProps {
   text?: React.ReactNode;
@@ -31,8 +39,8 @@ class Marquee extends React.PureComponent<MarqueeProps, any> {
     this.texts = {};
     this.left = new Animated.Value(0);
     this.state = {
-      twidth : 0,
-      width : 0,
+      twidth: 0,
+      width: 0,
     };
   }
 
@@ -50,7 +58,7 @@ class Marquee extends React.PureComponent<MarqueeProps, any> {
         this.tryStart();
       },
     );
-  }
+  };
 
   tryStart() {
     if (this.state.twidth > this.state.width && this.state.width) {
@@ -70,11 +78,11 @@ class Marquee extends React.PureComponent<MarqueeProps, any> {
         },
       );
     }
-  }
+  };
 
   startMove = () => {
     const { fps = 40, loop } = this.props;
-    const SPPED = 1 / fps * 1000;
+    const SPPED = (1 / fps) * 1000;
     // tslint:disable-next-line:no-this-assignment
     const { props } = this;
     Animated.timing(this.left, {
@@ -89,7 +97,7 @@ class Marquee extends React.PureComponent<MarqueeProps, any> {
         this.moveToHeader();
       }
     });
-  }
+  };
 
   moveToHeader = () => {
     Animated.timing(this.left, {
@@ -101,7 +109,7 @@ class Marquee extends React.PureComponent<MarqueeProps, any> {
     }).start(() => {
       this.startMove();
     });
-  }
+  };
 
   render() {
     const { width, twidth } = this.state;
@@ -131,7 +139,7 @@ class Marquee extends React.PureComponent<MarqueeProps, any> {
               {
                 translateX: this.left.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [0,-twidth + width],
+                  outputRange: [0, -twidth + width],
                 }),
               },
             ],

@@ -14,7 +14,7 @@ export interface OperationContainerProps {
 export default class OperationContainer extends React.Component<
   OperationContainerProps,
   any
-  > {
+> {
   constructor(props: OperationContainerProps) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ export default class OperationContainer extends React.Component<
     const { onBackHandler } = this.props;
     if (typeof onBackHandler === 'function') {
       const flag = onBackHandler();
-      if(flag){
+      if (flag) {
         this.onClose();
       }
       return true;
@@ -47,7 +47,7 @@ export default class OperationContainer extends React.Component<
     const { actions, onAnimationEnd } = this.props;
     const footer = actions.map(button => {
       // tslint:disable-next-line:only-arrow-functions
-      const orginPress = button.onPress || function () { };
+      const orginPress = button.onPress || function() {};
       button.onPress = () => {
         const res = orginPress();
         if (res && (res as any).then) {

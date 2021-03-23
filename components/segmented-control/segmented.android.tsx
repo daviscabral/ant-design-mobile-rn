@@ -1,6 +1,12 @@
 import normalizeColor from 'normalize-css-color';
 import React from 'react';
-import { StyleProp, Text, TouchableHighlight, View, ViewStyle } from 'react-native';
+import {
+  StyleProp,
+  Text,
+  TouchableHighlight,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { WithTheme, WithThemeStyles } from '../style';
 import { SegmentedControlPropsType } from './PropsType';
 import AndroidStyles, { SegmentControlStyle } from './style/index';
@@ -111,7 +117,8 @@ export default class SegmentedControl extends React.Component<
             const underlayColor =
               idx === selectedIndex
                 ? tintColor
-                : '#'+setNormalizedColorAlpha(
+                : '#' +
+                  setNormalizedColorAlpha(
                     normalizeColor(tintColor),
                     0.3,
                   ).toString(16);
@@ -129,7 +136,10 @@ export default class SegmentedControl extends React.Component<
                   // tslint:disable-next-line:jsx-no-multiline-js
                   style={[
                     styles.itemText,
-                    { color: idx === selectedIndex ? selectedTextColor : tintColor },
+                    {
+                      color:
+                        idx === selectedIndex ? selectedTextColor : tintColor,
+                    },
                   ]}
                 >
                   {value}

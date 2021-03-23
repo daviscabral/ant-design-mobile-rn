@@ -3,7 +3,7 @@ declare module '@ant-design/react-native';
 declare module 'antd-mobile-demo-data';
 
 declare module 'normalize-css-color';
-declare module '@bang88/react-native-ultimate-listview';
+declare module '@daviscabral/react-native-ultimate-listview';
 
 declare var process: {
   env: {

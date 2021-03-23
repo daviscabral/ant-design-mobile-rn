@@ -98,18 +98,15 @@ export interface LocaleProviderProps {
 
 export const LocaleContext = React.createContext({});
 
-const LocaleProvider = function (props: LocaleProviderProps) {
-  const locale = React.useMemo(
-    () => {
-      return {antLocale: {...props.locale, exist: true}}
-    },
-    [props.locale],
-  );
+const LocaleProvider = function(props: LocaleProviderProps) {
+  const locale = React.useMemo(() => {
+    return { antLocale: { ...props.locale, exist: true } };
+  }, [props.locale]);
   return (
     <LocaleContext.Provider value={locale}>
       {props.children}
     </LocaleContext.Provider>
-  )
+  );
 };
 
-export default React.memo(LocaleProvider)
+export default React.memo(LocaleProvider);

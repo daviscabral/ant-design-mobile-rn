@@ -4,7 +4,7 @@ import ToastContainer from './ToastContainer';
 
 interface IToastConfigurable {
   duration?: number;
-  onClose?: () => void,
+  onClose?: () => void;
   mask?: boolean;
   stackable?: boolean;
 }
@@ -20,11 +20,11 @@ const defaultConfig: IToastConfigurable = {
   onClose: () => {},
   mask: true,
   stackable: true,
-}
+};
 
 let defaultProps = {
   ...defaultConfig,
-}
+};
 
 const toastKeyMap: { [key: number]: 1 } = {};
 
@@ -34,7 +34,9 @@ function remove(key: number) {
 }
 
 function removeAll() {
-  Object.keys(toastKeyMap).forEach((_key) => Portal.remove(Number.parseInt(_key, 10)));
+  Object.keys(toastKeyMap).forEach(_key =>
+    Portal.remove(Number.parseInt(_key, 10)),
+  );
 }
 
 function notice(
@@ -51,13 +53,13 @@ function notice(
     duration,
     onClose,
     mask,
-  }
+  };
 
   if (typeof content !== 'string') {
     props = {
       ...props,
       ...content,
-    }
+    };
   }
 
   if (!props.stackable) {
@@ -85,13 +87,13 @@ export default {
   LONG: 8,
   defaultConfig,
   getConfig: () => {
-    return {...defaultProps};
+    return { ...defaultProps };
   },
   config(props: IToastConfigurable) {
     defaultProps = {
       ...defaultProps,
       ...props,
-    }
+    };
   },
   /**
    * @deprecated use Toast.info instead

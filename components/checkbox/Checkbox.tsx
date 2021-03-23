@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleProp, Text, TextStyle, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  StyleProp,
+  Text,
+  TextStyle,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import Icon from '../icon';
 import { WithTheme, WithThemeStyles } from '../style';
 import { CheckboxPropsType } from './PropsType';
@@ -51,7 +57,7 @@ export default class Checkbox extends React.Component<CheckboxProps, any> {
     const checked = this.state.checked;
     return (
       <WithTheme themeStyles={CheckboxStyles} styles={this.props.styles}>
-        {(styles,theme) => {
+        {(styles, theme) => {
           let icon;
           if (checked) {
             icon = disabled ? (

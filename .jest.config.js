@@ -8,7 +8,7 @@ const transformPackages = [
   'react-native-collapsible',
   'react-native-swipeout',
   'react-native-camera-roll-picker',
-  '@bang88/react-native-ultimate-listview',
+  '@daviscabral/react-native-ultimate-listview',
   '@react-native-community',
   '@react-native-picker/picker',
 ];
@@ -16,7 +16,7 @@ const transformPackages = [
 module.exports = {
   // ...tsjPreset,
   preset: '@testing-library/react-native',
-  setupFiles: ["@testing-library/react-native/jest-preset",],
+  setupFiles: ['@testing-library/react-native/jest-preset'],
   // setupFilesAfterEnv: [
   //   '@testing-library/react-native/cleanup-after-each',
   //   // ... other setup files ...

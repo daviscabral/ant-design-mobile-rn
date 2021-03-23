@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, TextInput, TextStyle, View } from 'react-native';
+import { LocaleContext } from '../locale-provider';
 import { WithTheme, WithThemeStyles } from '../style';
 import { getComponentLocale } from '../_util/getLocale';
 import zh_CN from './locale/zh_CN';
 import Modal from './Modal';
 import { CallbackOnBackHandler, CallbackOrActions } from './PropsType';
 import promptStyles, { PromptStyle } from './style/prompt';
-import { LocaleContext } from "../locale-provider";
 
 export interface PropmptContainerProps extends WithThemeStyles<PromptStyle> {
   title: React.ReactNode;
@@ -22,7 +22,7 @@ export interface PropmptContainerProps extends WithThemeStyles<PromptStyle> {
 export default class PropmptContainer extends React.Component<
   PropmptContainerProps,
   any
-  > {
+> {
   static defaultProps = {
     type: 'default',
     defaultValue: '',
@@ -43,7 +43,7 @@ export default class PropmptContainer extends React.Component<
     const { onBackHandler } = this.props;
     if (typeof onBackHandler === 'function') {
       const flag = onBackHandler();
-      if(flag){
+      if (flag) {
         this.onClose();
       }
       return flag;
@@ -77,7 +77,7 @@ export default class PropmptContainer extends React.Component<
       placeholders,
     } = this.props;
     const { text, password } = this.state;
-    const getArgs = function (func: (...args: any[]) => void) {
+    const getArgs = function(func: (...args: any[]) => void) {
       if (type === 'login-password') {
         return func.apply(this, [text, password]);
       } else if (type === 'secure-text') {
@@ -97,7 +97,7 @@ export default class PropmptContainer extends React.Component<
     let callbacks;
     if (typeof actions === 'function') {
       callbacks = [
-        { text: _locale.cancelText, style: 'cancel', onPress: () => { } },
+        { text: _locale.cancelText, style: 'cancel', onPress: () => {} },
         { text: _locale.okText, onPress: () => getArgs(actions) },
       ];
     } else {
@@ -116,7 +116,7 @@ export default class PropmptContainer extends React.Component<
 
     const footer = (callbacks as any).map((button: any) => {
       // tslint:disable-next-line:only-arrow-functions
-      const orginPress = button.onPress || function () { };
+      const orginPress = button.onPress || function() {};
       button.onPress = () => {
         const res = orginPress();
         if (res && res.then) {
@@ -156,38 +156,38 @@ export default class PropmptContainer extends React.Component<
               onAnimationEnd={onAnimationEnd}
               onRequestClose={this.onBackAndroid}
             >
-                {message ? <Text style={styles.message}>{message}</Text> : null}
-                <View style={styles.inputGroup}>
-                  {type !== 'secure-text' && (
-                    <View style={firstStyle}>
-                      <TextInput
-                        autoFocus
-                        onChangeText={value => {
-                          this.onChangeText('text', value);
-                        }}
-                        value={this.state.text}
-                        style={styles.input}
-                        underlineColorAndroid="transparent"
-                        placeholder={placeholders![0]}
-                      />
-                    </View>
-                  )}
-                  {(type === 'secure-text' || type === 'login-password') && (
-                    <View style={lastStyle}>
-                      <TextInput
-                        autoFocus
-                        secureTextEntry
-                        onChangeText={value => {
-                          this.onChangeText('password', value);
-                        }}
-                        value={this.state.password}
-                        style={styles.input}
-                        underlineColorAndroid="transparent"
-                        placeholder={placeholders![1]}
-                      />
-                    </View>
-                  )}
-                </View>
+              {message ? <Text style={styles.message}>{message}</Text> : null}
+              <View style={styles.inputGroup}>
+                {type !== 'secure-text' && (
+                  <View style={firstStyle}>
+                    <TextInput
+                      autoFocus
+                      onChangeText={value => {
+                        this.onChangeText('text', value);
+                      }}
+                      value={this.state.text}
+                      style={styles.input}
+                      underlineColorAndroid="transparent"
+                      placeholder={placeholders![0]}
+                    />
+                  </View>
+                )}
+                {(type === 'secure-text' || type === 'login-password') && (
+                  <View style={lastStyle}>
+                    <TextInput
+                      autoFocus
+                      secureTextEntry
+                      onChangeText={value => {
+                        this.onChangeText('password', value);
+                      }}
+                      value={this.state.password}
+                      style={styles.input}
+                      underlineColorAndroid="transparent"
+                      placeholder={placeholders![1]}
+                    />
+                  </View>
+                )}
+              </View>
             </Modal>
           );
         }}

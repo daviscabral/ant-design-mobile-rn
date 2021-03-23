@@ -1,5 +1,16 @@
 import React from 'react';
-import { StyleProp, Text, TextStyle, TouchableHighlight, TouchableWithoutFeedback, View, ViewStyle, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleProp,
+  Text,
+  TextStyle,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+} from 'react-native';
+import { LocaleContext } from '../locale-provider';
 import { WithTheme, WithThemeStyles } from '../style';
 import { getComponentLocale } from '../_util/getLocale';
 import alert from './alert';
@@ -9,11 +20,10 @@ import operation from './operation';
 import prompt from './prompt';
 import { CallbackOnBackHandler, ModalPropsType } from './PropsType';
 import modalStyles, { ModalStyle } from './style/index';
-import { LocaleContext } from "../locale-provider";
 
 export interface ModalProps
   extends ModalPropsType<TextStyle>,
-  WithThemeStyles<ModalStyle> {
+    WithThemeStyles<ModalStyle> {
   style?: StyleProp<ViewStyle>;
   bodyStyle?: StyleProp<ViewStyle>;
   onRequestClose?: CallbackOnBackHandler;
@@ -27,7 +37,7 @@ class AntmModal extends React.Component<ModalProps, any> {
     style: {},
     bodyStyle: {},
     animationType: 'fade',
-    onClose() { },
+    onClose() {},
     footer: [],
     transparent: false,
     popup: false,
@@ -127,9 +137,7 @@ class AntmModal extends React.Component<ModalProps, any> {
               );
             });
             footerDom = (
-              <View
-                style={[btnGroupStyle, styles.footer]}
-              >
+              <View style={[btnGroupStyle, styles.footer]}>
                 {footerButtons}
               </View>
             );
@@ -162,8 +170,11 @@ class AntmModal extends React.Component<ModalProps, any> {
                   animateAppear={animateAppear}
                   maskClosable={maskClosable}
                 >
-                  <KeyboardAvoidingView behavior="padding" enabled={Platform.OS==="ios"}>
-                    <View style={[styles.innerContainer,style]}>
+                  <KeyboardAvoidingView
+                    behavior="padding"
+                    enabled={Platform.OS === 'ios'}
+                  >
+                    <View style={[styles.innerContainer, style]}>
                       {title ? (
                         <Text style={[styles.header]}>{title}</Text>
                       ) : null}
@@ -201,9 +212,7 @@ class AntmModal extends React.Component<ModalProps, any> {
                   animateAppear={animateAppear}
                   maskClosable={maskClosable}
                 >
-                  <View style={bodyStyle}>
-                    {children}
-                  </View>
+                  <View style={bodyStyle}>{children}</View>
                 </RCModal>
               </View>
             );
